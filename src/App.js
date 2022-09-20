@@ -1,11 +1,9 @@
-import { Header } from './components/header/style'
-import { NewPost } from './components/NewPost'
+import { Routes } from './routes'
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <NewPost />
+      <Routes />
     </div>
   )
 }

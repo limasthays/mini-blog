@@ -8,7 +8,7 @@ export default createGlobalStyle`
     }
 
     :root{
-        --green: hsl(108, 66%, 48%);
+        --primary: hsl(108, 66%, 48%);
         --md-grey: hsl(23, 12%, 74%);
         --light-grey: hsl(24, 12%, 92%);
         
@@ -18,20 +18,9 @@ export default createGlobalStyle`
         --lg: 4rem;
     }
 
-    /*@media (min-width: 768px) {
-            :root{
-                --xm: 1rem;
-                --sm: 2rem;
-                --md: 4rem;
-                --lg: 8rem;
-
-                --green: pink;
-            }
-        }*/
-
     body{
         background-color: var(--light-grey);
-        padding: 0 var(--md);
+        padding: var(--md);
         
         h1, h2, h3{
             font-family: 'Poppins', sans-serif;
