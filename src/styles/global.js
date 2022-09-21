@@ -19,9 +19,8 @@ export default createGlobalStyle`
     }
 
     body{
-        background-color: var(--light-grey);
-        padding: var(--md);
-        
+        background-color: var(--md-grey);
+                
         h1, h2, h3{
             font-family: 'Poppins', sans-serif;
         }

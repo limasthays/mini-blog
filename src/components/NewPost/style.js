@@ -4,7 +4,7 @@ export const NewPostDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--sm);
-
+  padding-bottom: var(--sm);
   h2 {
     font-size: var(--sm);
   }
