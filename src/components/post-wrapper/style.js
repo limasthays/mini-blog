@@ -12,8 +12,18 @@ export const SinglePostDiv = styled.div`
     background-color: var(--md-grey);
   }
 
+  .name:hover,
+  .username:hover {
+    color: var(--primary);
+  }
+
   .post-content {
     width: 75%;
+    cursor: pointer;
+  }
+
+  .post-header {
+    cursor: pointer;
   }
 
   .name,
