@@ -1,79 +1,62 @@
-import { PostsDiv } from './style'
-import { useContext, useEffect, useState } from 'react'
-import { PostWrapper } from '../post-wrapper'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { api } from '../../api'
-import { PostHeader } from '../Post-Header'
-import { PostContent } from '../Post-Content'
-import { CommentsModal } from '../comments-modal'
-import { ModalCommentsContext } from '../../contexts/ModalContext'
+
+import { AvatarGenerator } from 'random-avatar-generator'
+import { PostsList } from '../PostsList'
 
 const posts = []
 const users = []
+const database = []
 
 export const PostsContainer = () => {
   const [loading, setLoading] = useState(true)
-  const { isOpen, setIsOpen } = useContext(ModalCommentsContext)
+
+  const avatarGenerator = new AvatarGenerator()
 
   useEffect(() => {
     api
       .get('/posts')
-      .then((res) => {
-        posts.push(...res.data)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+      .then((resPosts) => {
+        posts.push(...resPosts.data)
 
-    api
-      .get('/users')
-      .then((res) => {
-        users.push(...res.data)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+        api
+          .get('/users')
+          .then((resUsers) => {
+            users.push(...resUsers.data)
 
-  return (
-    <PostsDiv>
-      {posts.map((post) => {
-        let filtered = users.find((user) => post.userId === user.id)
-        let { name, username } = filtered
+            users.forEach((user) => {
+              user.avatar = avatarGenerator.generateRandomAvatar()
+            })
 
-        return (
-          !loading && (
-            <PostWrapper key={nanoid()}>
-              <div>
-                <PostHeader
-                  key={nanoid()}
-                  name={name}
-                  username={username}
-                  onClick={() => {
-                    console.log('aqui vai ficar o clique do perfil')
-                  }}
-                />
-                <PostContent
-                  key={nanoid()}
-                  title={post.title}
-                  post={post.body}
-                  onClick={() => {
-                    setIsOpen(!isOpen)
-                  }}
-                />
+            for (let i = 0; i < posts.length; i++) {
+              let singlePost = posts[i]
+              let singleUser = users.find(
+                (user) => user.id === singlePost.userId
+              )
 
-                {isOpen && <CommentsModal />}
-              </div>
-            </PostWrapper>
-          )
-        )
-      })}
-    </PostsDiv>
+              database.push({
+                user: singleUser,
+                post: singlePost,
+              })
+            }
+            console.log('database: ', database)
+            setLoading(false)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  })
+
+  return loading ? (
+    <div>loading...</div>
+  ) : (
+    <>
+      <PostsList key={nanoid()} list={database} />
+    </>
   )
 }
