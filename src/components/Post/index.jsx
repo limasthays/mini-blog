@@ -4,6 +4,7 @@ import { PostContent } from '../PostContent'
 import { PostHeader } from '../PostHeader'
 import { UserAvatar } from '../UserAvatar'
 import { PostDiv } from './styles'
+import { ModalCommentsProvider } from '../../contexts/ModalContext'
 
 export const Post = ({ user, post }) => {
   return (
@@ -12,7 +13,10 @@ export const Post = ({ user, post }) => {
       <div>
         <PostHeader name={user.name} username={user.username} />
         <PostContent title={post.title} post={post.body} />
-        <PostComments postId={post.id} />
+
+        <ModalCommentsProvider>
+          <PostComments postId={post.id} />
+        </ModalCommentsProvider>
       </div>
     </PostDiv>
   )
