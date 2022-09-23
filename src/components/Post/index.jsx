@@ -12,7 +12,7 @@ export const Post = ({ user, post }) => {
       <div>
         <PostHeader name={user.name} username={user.username} />
         <PostContent title={post.title} post={post.body} />
-        <PostComments />
+        <PostComments postId={post.id} />
       </div>
     </PostDiv>
   )

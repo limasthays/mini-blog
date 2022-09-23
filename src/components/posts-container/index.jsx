@@ -40,7 +40,7 @@ export const PostsContainer = () => {
                 post: singlePost,
               })
             }
-            console.log('database: ', database)
+
             setLoading(false)
           })
           .catch((error) => {
