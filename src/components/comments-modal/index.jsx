@@ -3,18 +3,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { ModalCommentsContext } from '../../contexts/ModalContext'
 import { useContext } from 'react'
+import { PostHeader } from '../PostHeader'
+import { PostContent } from '../PostContent'
+import { UserAvatar } from '../UserAvatar'
+import { Comments } from '../Comments'
 
-export const CommentsModal = () => {
+export const CommentsModal = ({ user, post }) => {
   const { setIsOpen } = useContext(ModalCommentsContext)
 
   return (
     <StyledCommmentsModal>
-      <FontAwesomeIcon
-        icon={faWindowClose}
-        onClick={() => {
-          setIsOpen(false)
-        }}
-      />
+      <div className="post-modal">
+        <FontAwesomeIcon
+          icon={faWindowClose}
+          onClick={() => {
+            setIsOpen(false)
+          }}
+        />
+
+        <div>
+          <UserAvatar src={user.avatar} />
+          <PostHeader name={user.name} username={user.username} />
+        </div>
+        <PostContent title={post.title} post={post.body} />
+
+        <Comments postId={post.id} />
+      </div>
     </StyledCommmentsModal>
   )
 }

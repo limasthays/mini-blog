@@ -15,7 +15,7 @@ export const Post = ({ user, post }) => {
         <PostContent title={post.title} post={post.body} />
 
         <ModalCommentsProvider>
-          <PostComments postId={post.id} />
+          <PostComments postId={post.id} user={user} post={post} />
         </ModalCommentsProvider>
       </div>
     </PostDiv>

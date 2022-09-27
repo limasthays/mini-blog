@@ -23,5 +23,12 @@ export const NewPostDiv = styled.div`
     font-family: 'Open Sans', sans-serif;
     border-radius: 4px;
     padding: 8px;
+    border: 1px solid var(--md-grey);
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 24px;
+    }
   }
 `
