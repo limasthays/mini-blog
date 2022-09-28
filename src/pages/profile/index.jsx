@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { api } from '../../api'
 import { AvatarBox } from '../../components/Avatar-box'
 import { MainContainer } from '../../components/main-container/style'
+import { ProfileTabs } from '../../components/Profile-tabs'
 import { UserIdContext } from '../../contexts/UserIdContext'
 
 export const Profile = () => {
@@ -42,6 +43,7 @@ export const Profile = () => {
   ) : (
     <MainContainer>
       <AvatarBox dataList={userData} />
+      <ProfileTabs />
     </MainContainer>
   )
 }
