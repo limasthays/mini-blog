@@ -1,27 +1,29 @@
 import { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { api } from '../../api'
+import { AvatarBox } from '../../components/Avatar-box'
 import { MainContainer } from '../../components/main-container/style'
 import { UserIdContext } from '../../contexts/UserIdContext'
 
 export const Profile = () => {
-  const { userId, setUserId } = useContext(UserIdContext)
+  const { id } = useParams()
+  const [userData, setUserData] = useState({})
+  const [userPosts, setUserPosts] = useState([])
   const [loading, setLoading] = useState(true)
-  let { id } = useParams()
-  const [userData, setUserData] = useState()
-  const [userPosts, setUserPosts] = useState()
+  const history = useHistory()
 
   useEffect(() => {
     api
-      .get('/users')
+      .get(`/users/${id}`)
       .then(({ data }) => {
-        const foundedUser = data.find((user) => user.id === userId)
-        setUserData(foundedUser)
+        setUserData(data)
 
         api
           .get('/posts')
           .then(({ data }) => {
-            const filteredPosts = data.filter((post) => post.userId === userId)
+            const filteredPosts = data.filter(
+              (post) => post.userId.toString() === id
+            )
             setUserPosts(filteredPosts)
           })
           .catch((err) => {
@@ -30,21 +32,16 @@ export const Profile = () => {
       })
       .catch((err) => {
         console.error(err)
+        history.push('/notfound')
       })
     setLoading(false)
   }, [])
 
-  return (
+  return loading ? (
+    <>loading...</>
+  ) : (
     <MainContainer>
-      {console.log('user data: ', userData)}
-      {loading ? (
-        <>loading...</>
-      ) : (
-        <>
-          <h1>o user id é: {userId}</h1>
-          <h2>nome do user: fulano</h2>
-        </>
-      )}
+      <AvatarBox dataList={userData} />
     </MainContainer>
   )
 }

@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 import { Homepage } from '../pages/home'
+import { NotFound } from '../pages/NotFound'
 import { Profile } from '../pages/profile'
 
 export function Routes() {
@@ -11,6 +12,10 @@ export function Routes() {
 
       <Route exact path="/profile/:id">
         <Profile />
+      </Route>
+
+      <Route exact path="/notfound">
+        <NotFound />
       </Route>
     </Switch>
   )
