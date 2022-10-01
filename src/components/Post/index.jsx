@@ -6,16 +6,21 @@ import { UserAvatar } from '../UserAvatar'
 import { PostDiv } from './styles'
 import { ModalCommentsProvider } from '../../contexts/ModalContext'
 
-export const Post = ({ user, post }) => {
+export const Post = ({ user, post, avatar }) => {
   return (
     <PostDiv key={nanoid()}>
-      <UserAvatar src={user.avatar} />
+      <UserAvatar src={user.avatar || avatar} />
       <div>
         <PostHeader name={user.name} username={user.username} id={user.id} />
         <PostContent title={post.title} post={post.body} />
 
         <ModalCommentsProvider>
-          <PostComments postId={post.id} user={user} post={post} />
+          <PostComments
+            postId={post.id}
+            user={user}
+            post={post}
+            avatar={avatar}
+          />
         </ModalCommentsProvider>
       </div>
     </PostDiv>

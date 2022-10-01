@@ -5,7 +5,7 @@ import { api } from '../../api'
 import { CommentsModal } from '../comments-modal'
 import { ModalCommentsContext } from '../../contexts/ModalContext'
 
-export const PostComments = ({ postId, user, post }) => {
+export const PostComments = ({ postId, user, post, avatar }) => {
   const [loading, setLoading] = useState(true)
   const [commentsList, setCommentsList] = useState([])
 
@@ -32,7 +32,7 @@ export const PostComments = ({ postId, user, post }) => {
         <FontAwesomeIcon icon={faCommentAlt} />
         <span>{commentsList.length} comments </span>
       </div>
-      {isOpen && <CommentsModal user={user} post={post} />}
+      {isOpen && <CommentsModal user={user} post={post} avatar={avatar} />}
     </>
   )
 }

@@ -1,17 +1,19 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { api } from '../../api'
 import { AvatarBox } from '../../components/Avatar-box'
 import { MainContainer } from '../../components/main-container/style'
 import { ProfileTabs } from '../../components/Profile-tabs'
-import { UserIdContext } from '../../contexts/UserIdContext'
+import { AvatarGenerator } from 'random-avatar-generator'
 
 export const Profile = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState({})
   const [userPosts, setUserPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [avatar, setAvatar] = useState('')
   const history = useHistory()
+  const generator = new AvatarGenerator()
 
   useEffect(() => {
     api
@@ -35,6 +37,8 @@ export const Profile = () => {
         console.error(err)
         history.push('/notfound')
       })
+
+    setAvatar(generator.generateRandomAvatar())
     setLoading(false)
   }, [])
 
@@ -42,8 +46,8 @@ export const Profile = () => {
     <>loading...</>
   ) : (
     <MainContainer>
-      <AvatarBox dataList={userData} />
-      <ProfileTabs />
+      <AvatarBox dataList={userData} avatar={avatar} />
+      <ProfileTabs postsList={userPosts} userData={userData} avatar={avatar} />
     </MainContainer>
   )
 }

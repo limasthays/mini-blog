@@ -1,7 +1,12 @@
-export const ProfilePostsBox = () => {
+import { Post } from '../Post'
+import { nanoid } from 'nanoid'
+
+export const ProfilePostsBox = ({ userData, posts, avatar }) => {
   return (
-    <div>
-      <h1>aqui vão ficar os posts</h1>
-    </div>
+    <>
+      {posts?.map((post) => (
+        <Post key={nanoid()} user={userData} post={post} avatar={avatar} />
+      ))}
+    </>
   )
 }

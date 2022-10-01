@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const NavTabs = styled.nav`
+  margin-bottom: 2rem;
+
   ul {
     list-style: none;
 

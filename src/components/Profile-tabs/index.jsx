@@ -3,9 +3,8 @@ import { ProfileAlbums } from '../ProfileAlbums'
 import { ProfilePostsBox } from '../ProfilePostsBox'
 import { NavTabs } from './style'
 
-export const ProfileTabs = () => {
+export const ProfileTabs = ({ postsList, userData, avatar }) => {
   const [activeTab, setActiveTab] = useState('posts')
-  console.log('state tab: ', activeTab)
 
   return (
     <>
@@ -42,7 +41,13 @@ export const ProfileTabs = () => {
           </li>
         </ul>
       </NavTabs>
-      {activeTab === 'posts' && <ProfilePostsBox />}
+      {activeTab === 'posts' && (
+        <ProfilePostsBox
+          posts={postsList}
+          userData={userData}
+          avatar={avatar}
+        />
+      )}
       {activeTab === 'albums' && <ProfileAlbums />}
     </>
   )
