@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+import { AlbumModalProvider } from './contexts/AlbumModalContext'
 import { UserIdProvider } from './contexts/UserIdContext'
 
 import reportWebVitals from './reportWebVitals'
@@ -12,8 +13,10 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <UserIdProvider>
-        <GlobalStyle />
-        <App />
+        <AlbumModalProvider>
+          <GlobalStyle />
+          <App />
+        </AlbumModalProvider>
       </UserIdProvider>
     </React.StrictMode>
   </BrowserRouter>
