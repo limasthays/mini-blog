@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { api } from '../../api'
 import { useState } from 'react'
 import { Carousel } from '../Carousel'
+import { CarouselContextProvider } from '../../contexts/CarouselContext'
 
 export const AlbumModal = ({ albumTitle, albumId }) => {
   const { setIsOpen } = useContext(AlbumModalContext)
@@ -35,9 +36,11 @@ export const AlbumModal = ({ albumTitle, albumId }) => {
           setIsOpen(false)
         }}
       />
-      <h1>{albumTitle}</h1>
+      <h2>{albumTitle}</h2>
 
-      {loading === false && <Carousel photos={currentAlbum} />}
+      <CarouselContextProvider>
+        {loading === false && <Carousel photos={currentAlbum} />}
+      </CarouselContextProvider>
     </AlbumModalContainer>
   )
 }

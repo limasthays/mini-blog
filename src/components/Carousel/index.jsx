@@ -1,14 +1,12 @@
-import { StyledCarousel } from './style'
-import { nanoid } from 'nanoid'
+import { CarouselStyle } from './style'
+import { FocusedPhoto } from '../Focused-Photo'
+import { PhotoSlider } from '../Photo-Slider'
 
 export const Carousel = ({ photos }) => {
   return (
-    <StyledCarousel>
-      <div className="open-album">
-        {photos.map(({ thumbnailUrl }) => {
-          return <img key={nanoid()} src={thumbnailUrl} alt="" />
-        })}
-      </div>
-    </StyledCarousel>
+    <CarouselStyle>
+      <FocusedPhoto photos={photos} />
+      <PhotoSlider photos={photos} />
+    </CarouselStyle>
   )
 }

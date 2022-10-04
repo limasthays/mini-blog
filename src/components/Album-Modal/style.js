@@ -3,9 +3,7 @@ import styled from 'styled-components'
 export const AlbumModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-
   width: 100%;
   height: 100%;
 
@@ -14,10 +12,11 @@ export const AlbumModalContainer = styled.div`
   left: 0;
 
   background-color: var(--light-grey);
-  border: 3rem solid var(--md-grey);
+  border: 2rem solid var(--md-grey);
   padding: 1rem;
 
   svg {
+    width: auto;
     align-self: flex-end;
   }
 `

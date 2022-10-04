@@ -17,7 +17,9 @@ export const AlbumCard = ({ item, currAlbum, setCurrAlbum }) => {
         }}
       >
         <div className="square" />
-        <h3>{title}</h3>
+        <div className="title">
+          <h3>{title}</h3>
+        </div>
       </AlbumCardDiv>
 
       {isOpen && currAlbum === id && (

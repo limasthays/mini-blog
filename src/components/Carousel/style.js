@@ -1,19 +1,10 @@
 import styled from 'styled-components'
 
-export const StyledCarousel = styled.div`
+export const CarouselStyle = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 
-  .open-album {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-
-    max-width: 70vw;
-    overflow: auto;
-
-    img {
-      width: 50px;
-    }
-  }
+  max-width: 80vw;
 `
