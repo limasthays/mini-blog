@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 
 export const NewPostDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--sm);
-  padding-bottom: var(--sm);
   h2 {
-    font-size: var(--sm);
+    font-size: var(--md);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
+    padding: var(--sm) 0;
   }
 
   input {
@@ -26,7 +29,7 @@ export const NewPostDiv = styled.div`
     border: 1px solid var(--md-grey);
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     h2 {
       font-size: 24px;
     }
