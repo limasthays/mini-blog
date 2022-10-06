@@ -23,7 +23,7 @@ export const CommentsModal = ({ user, post, avatar }) => {
 
         <div>
           <UserAvatar src={user.avatar || avatar} />
-          <PostHeader name={user.name} username={user.username} />
+          <PostHeader name={user.name} username={user.username} id={user.id} />
         </div>
         <PostContent title={post.title} post={post.body} />
 

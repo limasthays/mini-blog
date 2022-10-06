@@ -11,7 +11,12 @@ export const Post = ({ user, post, avatar }) => {
     <PostDiv key={nanoid()}>
       <UserAvatar src={user.avatar || avatar} />
       <div>
-        <PostHeader name={user.name} username={user.username} id={user.id} />
+        <PostHeader
+          name={user.name}
+          username={user.username}
+          id={user.id}
+          post={post}
+        />
         <PostContent title={post.title} post={post.body} />
 
         <ModalCommentsProvider>
