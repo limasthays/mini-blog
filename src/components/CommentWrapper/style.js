@@ -5,13 +5,32 @@ export const CommentDiv = styled.div`
     width: 25px;
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    .random-name,
-    .random-email {
-      font-family: 'Poppins', sans-serif;
-    }
+  margin-bottom: 1rem;
+
+  .random-name,
+  .random-email {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .random-name {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  .random-email {
+    text-transform: lowercase;
+  }
+
+  .comment-header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .comment {
+    font-size: 0.9rem;
+    margin: 0 2rem;
   }
 `

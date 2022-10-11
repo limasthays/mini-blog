@@ -6,12 +6,13 @@ export const CommentWrapper = ({ name, email, comment }) => {
 
   return (
     <CommentDiv>
-      <img src={avatarGenerator.generateRandomAvatar()} alt="" />
-      <div>
-        <span className="random-name">{name}</span>
-        <span className="random-email">{email}</span>
-        <p className="comment">{comment}</p>
+      <div className="comment-header">
+        <img src={avatarGenerator.generateRandomAvatar()} alt="" />
+        <span className="random-name">{name}, </span>
+        <span className="random-email"> {email}</span>
       </div>
+
+      <p className="comment">{comment}</p>
     </CommentDiv>
   )
 }

@@ -7,7 +7,7 @@ export const CommentsSection = styled.section`
     font-weight: 700;
     text-transform: uppercase;
     font-size: 1rem;
-    line-height: 24px;
+    margin: 1rem 0;
   }
   .comments-list {
     height: 40vh;

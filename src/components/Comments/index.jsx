@@ -24,7 +24,7 @@ export const Comments = ({ postId }) => {
     <CommentsSection>
       <h3>comments</h3>
       <div className="comments-list">
-        {!loading &&
+        {loading === false &&
           comments.map((comment) => (
             <CommentWrapper
               key={nanoid()}
