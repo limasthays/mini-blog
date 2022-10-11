@@ -1,11 +1,12 @@
-import { PostButton } from '../button'
-import { NewPostDiv } from './style'
-import { useForm } from 'react-hook-form'
-import { api } from '../../api'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import { api } from '../../api'
+import { NewPostDiv } from '../NewPost/style'
 import { Status } from '../Status'
+import { PostButton } from '../button'
+import { useForm } from 'react-hook-form'
 
-export const NewPost = () => {
+export const EditContent = ({ post, setOpenEdit }) => {
   const [inputs, setInputs] = useState({
     title: '',
     body: '',
@@ -13,30 +14,36 @@ export const NewPost = () => {
 
   const [status, setStatus] = useState('')
 
+  const { register, handleSubmit } = useForm()
+
+  useEffect(() => {
+    api
+      .get(`/posts/${post.id}`)
+      .then(({ data }) => {
+        setInputs({ ...inputs, title: data.title, body: data.body })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [])
+
   const onChangeValue = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
 
-  const { register, handleSubmit } = useForm()
-
   const onSubmit = (data) => {
     api
-      .post('/posts', data)
+      .put(`/posts/${post.id}`, data)
       .then((res) => {
         console.log('resposta: ', res)
         setStatus(res.status.toString())
       })
-      .catch((err) => console.log(err))
-
-    setInputs({
-      title: '',
-      body: '',
-    })
+      .catch((err) => console.error(err))
   }
 
   return (
     <NewPostDiv>
-      <h2>what happened to you?</h2>
+      <h3>edit your post here! :)</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -64,7 +71,7 @@ export const NewPost = () => {
 
         <div className="status-footer">
           <Status status={status} />
-          <PostButton type="submit" title="post!" />
+          <PostButton type="submit" title="edit post!" />
         </div>
       </form>
     </NewPostDiv>

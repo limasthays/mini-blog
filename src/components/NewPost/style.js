@@ -29,6 +29,12 @@ export const NewPostDiv = styled.div`
     border: 1px solid var(--md-grey);
   }
 
+  .status-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   @media (max-width: 768px) {
     h2 {
       font-size: 24px;
