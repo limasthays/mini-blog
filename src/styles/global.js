@@ -27,6 +27,15 @@ export default createGlobalStyle`
 
         p, span{
             font-family: 'Open Sans', sans-serif;
-        }        
+        }  
+        
+        svg{
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        button{
+            cursor: pointer;
+        }
     }
 `

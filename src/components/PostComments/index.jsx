@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import { api } from '../../api'
 import { CommentsModal } from '../comments-modal'
 import { ModalCommentsContext } from '../../contexts/ModalContext'
+import { PostCommentsIcons } from './style'
 
 export const PostComments = ({ postId, user, post, avatar }) => {
   const [loading, setLoading] = useState(true)
@@ -24,14 +25,14 @@ export const PostComments = ({ postId, user, post, avatar }) => {
     </>
   ) : (
     <>
-      <div
+      <PostCommentsIcons
         onClick={() => {
           setIsOpen(true)
         }}
       >
         <FontAwesomeIcon icon={faCommentAlt} />
         <span>{commentsList.length} comments </span>
-      </div>
+      </PostCommentsIcons>
       {isOpen && <CommentsModal user={user} post={post} avatar={avatar} />}
     </>
   )

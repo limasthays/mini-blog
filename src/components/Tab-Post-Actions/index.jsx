@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { EditModal } from '../Edit-Modal'
+import { DeleteModal } from '../DeleteModal'
 
 export const TabPostsAction = ({ post }) => {
   const [opendEdit, setOpenEdit] = useState(false)
@@ -29,6 +30,10 @@ export const TabPostsAction = ({ post }) => {
           <FontAwesomeIcon icon={faTrashAlt} />
           <span>Delete post</span>
         </div>
+
+        {opendDelete && (
+          <DeleteModal post={post} setOpenDelete={setOpenDelete} />
+        )}
       </TabPost>
     </>
   )
